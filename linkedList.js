@@ -11,6 +11,79 @@ export class LinkedList {
     let tmp = this.head;
     while (tmp.next != null) tmp = tmp.next;
     tmp.next = new Node(val);
-    this[val] = tmp.next;
+  }
+  prepend(val) {
+    if (this.head.data == null) {
+      this.head.data = val;
+      return;
+    }
+    let tmp = this.head;
+    this.head = new Node(val, tmp);
+  }
+  size(tmp = this.head) {
+    if (this.head == null) {
+      return 0;
+    }
+    if (tmp.next == null) return 1;
+    else if (tmp.next != null) {
+      tmp = tmp.next;
+      return 1 + this.size(tmp);
+    }
+  }
+  head() {
+    if (this.head.data == null) {
+      return null;
+    }
+    return this.head();
+  }
+  tail() {
+    if (this.head.data == null) {
+      return null;
+    }
+    let tmp = this.head;
+    while (tmp.next != null) tmp = tmp.next;
+    return tmp;
+  }
+  at(index) {
+    let pointer = 0;
+    let tmp = this.head;
+    while (pointer < this.size() && pointer <= index) {
+      if (index == pointer) {
+        return tmp;
+      } else {
+        tmp = tmp.next;
+        pointer++;
+      }
+    }
+    return tmp;
+  }
+  pop() {
+    if (this.head == null) {
+      return;
+    }
+    let tmp = this.head;
+
+    if (this.size() > 1) {
+      while (tmp.next.next != null) {
+        tmp = tmp.next;
+      }
+      tmp.next = null;
+    } else {
+      this.head = null;
+    }
+  }
+  contain(val) {
+    if (this.head == null) {
+      return false;
+    }
+    let tmp = this.head;
+    while (tmp.data != val && tmp.next != null) {
+      tmp = tmp.next;
+    }
+    if (tmp.next == null && tmp.data != val) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
