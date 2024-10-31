@@ -86,4 +86,33 @@ export class LinkedList {
       return true;
     }
   }
+  find(val) {
+    let index = 0;
+    if (this.head == null) {
+      return null;
+    }
+    let tmp = this.head;
+    while (tmp.data != val && tmp.next != null) {
+      tmp = tmp.next;
+      index++;
+    }
+    if (tmp.next == null && tmp.data != val) {
+      return null;
+    } else {
+      return index;
+    }
+  }
+  toString() {
+    let msg = "";
+    if (this.head == null) {
+      return null;
+    }
+    let tmp = this.head;
+    while (tmp.next != null) {
+      msg += `(${tmp.data})->`;
+      tmp = tmp.next;
+    }
+    msg += `(${null})`;
+    return msg;
+  }
 }
