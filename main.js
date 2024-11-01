@@ -5,5 +5,6 @@ list.append("hello");
 list.append("hey");
 list.append("there");
 list.prepend("first");
-
+list.insertAt(1, "second");
+list.removeAt(5);
 console.log(list.toString());
